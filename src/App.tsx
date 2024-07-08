@@ -95,53 +95,53 @@ function App() {
   }, [])
 
   if (!levels[level]) {
-    return <h1 className='mt-4 font-serif text-2xl text-yellow-100'>You Win</h1>
+    return <h1 className='p-40 font-extrabold text-center text-8xl text-yellow-300'>You Win</h1>
   }
 
   return (
-    <div className="absolute inset-0 -z-10 h-full w-full items-center [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]">
-      <div className="flex flex-col items-center my-auto text-center">
-        <h1 className='mt-2 mb-4 font-serif font-bold text-5xl text-yellow-100'>Memory Game</h1>
-        <div className="flex flex-wrap justify-center">
-          {gameCards.map(gameCard => (
-            <Card
-              key={gameCard.id}
-              card={gameCard}
-              isFlipped={flippedCards.some(flippedCard => flippedCard.id === gameCard.id)}
-              isDisabled={flippedCards.length === 2}
-              onFlip={handleCardFlip}
-            />
-          ))}
-        </div>
-        <div>
-          <p className='mt-4 font-serif text-2xl text-yellow-100'>Level: {level + 1}</p>
-          <p className='mt-2 font-serif text-2xl text-yellow-100'>Score: {score}</p>
-          {!isDone ? (
-            <div className='mt-2 font-serif text-2xl text-yellow-100'>Remaining Moves: {levels[level].maxScore - score}</div>
-          ) : score <= levels[level].maxScore ? (
-            <>
-              <p className='mt-4 font-serif text-2xl text-yellow-100'>Nice Work!</p>
-              <button
-                className='p-3 bg-green-600 text-white text-2xl rounded mt-4 font-bold'
-                onClick={handleNextLevel}
-              >
-                Next level
-              </button>
-            </>
-          ) : (
-            <>
-              <p className='mt-4 font-serif text-2xl text-yellow-100'>You were over by {score - levels[level].maxScore}</p>
-              <button
-                className='p-3 bg-red-600 text-white text-2xl rounded mt-4 font-bold'
-                onClick={handleRestart}
-              >
-                Try Again
-              </button>
-            </>
-          )}
-        </div>
+
+    <div className="flex flex-col items-center my-auto text-center">
+      <h1 className='mt-20 mb-10 font-serif font-bold text-6xl text-yellow-200'>Memory Game</h1>
+      <div className="flex flex-wrap justify-center">
+        {gameCards.map(gameCard => (
+          <Card
+            key={gameCard.id}
+            card={gameCard}
+            isFlipped={flippedCards.some(flippedCard => flippedCard.id === gameCard.id)}
+            isDisabled={flippedCards.length === 2}
+            onFlip={handleCardFlip}
+          />
+        ))}
+      </div>
+      <div>
+        <p className='mt-10 font-serif text-2xl text-yellow-100'>Level: {level + 1}</p>
+        <p className='mt-2 font-serif text-2xl text-yellow-100'>Score: {score}</p>
+        {!isDone ? (
+          <div className='mt-2 font-serif text-2xl text-yellow-100'>Remaining Moves: {levels[level].maxScore - score}</div>
+        ) : score <= levels[level].maxScore ? (
+          <>
+            <p className='mt-6 font-serif text-2xl text-yellow-100'>Nice Work!</p>
+            <button
+              className='p-3 bg-green-600 text-white text-2xl rounded mt-4 font-bold'
+              onClick={handleNextLevel}
+            >
+              Next level
+            </button>
+          </>
+        ) : (
+          <>
+            <p className='mt-6 font-serif text-2xl text-yellow-100'>You were over by {score - levels[level].maxScore}</p>
+            <button
+              className='p-3 bg-red-600 text-white text-2xl rounded mt-4 font-bold'
+              onClick={handleRestart}
+            >
+              Try Again
+            </button>
+          </>
+        )}
       </div>
     </div>
+
   );
 }
 
